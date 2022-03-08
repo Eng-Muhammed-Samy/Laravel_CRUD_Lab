@@ -1,37 +1,30 @@
 @extends('layouts/BaseLayout')
 @section("content")
-<!-- Add new user button -->
+    <!-- Add new user button -->
     <div class="text-center my-5">
-            <a href="{{route('posts.create')}}" class="btn btn-success">Add New Post</a>
-            <div class="text-center">
-                <hr>
-            </div>
-            <!-- add table -->
-    <div class="my-5">
-    <table class="table">
-            <thead>
+        <div class="text-center">
+            <hr>
+        </div>
+        <!-- add table -->
+        <div class="my-5">
+            <table class="table">
+                <thead>
                 <tr>
                     <th>ID</th>
-                    <th>User_ID</th>
                     <th>Title</th>
                     <th>Description</th>
-                    <th>Image</th>
-                    <th>view</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th>restore</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach($posts as $post)
                     <tr>
                         <td>{{$post["id"]}}</td>
-                        <td>{{$post["user_id"]}}</td>
                         <td>{{$post["title"]}}</td>
                         <td>{{$post["desc"]}}</td>
-                        <td><img width="50px" height="50px" src="{{asset('storage/images/'.$post['image'])}}" alt={{$post["image"]}} srcset=""></td>
-                        <td><a href="{{route('posts.show',$post['id'])}}" class="btn btn-sm btn-info">view</a></td>
-                        <td><a href="{{route('posts.edit', $post['id'])}}" class="btn btn-sm btn-warning">update</a></td>
-                        <td><button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">delete</button></td>
+                        <td><button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Restore</button></td>
+
+
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -41,13 +34,12 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Are You Sure You Want To Delete This Post
+                                        Are You Sure You Want To Restore This Post
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                        <form action="{{ route('posts.destroy',$post->id) }}" method="post">
+                                        <form action="{{ route('posts.restore',$post['id']) }}" method="get">
                                             @csrf
-                                            @method("delete")
                                             <button type="submit" class="btn btn-primary">Yes</button>
                                         </form>
                                     </div>
@@ -56,10 +48,10 @@
                         </div>
                     </tr>
                 @endforeach
-            </tbody>
-    </table>
-        {{ $posts->links() }}
-    </div>
+                </tbody>
+            </table>
+            {{ $posts->links() }}
+        </div>
 
 
 @endsection

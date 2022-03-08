@@ -13,13 +13,8 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/', [PostController::class, "index"])->name("posts.index");
-// Route::get('/posts/create', [PostController::class, 'create'])->name("posts.create");
-// Route::get('/posts/{post}', [PostController::class, 'show'])->name("posts.show");
+
+
+Route::get('posts/deletedUsers', [PostController::class, 'getDeletedUsers'])->name('posts.deletedUsers');
+Route::get('posts/restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
 Route::resource("posts", PostController::class);
-// Route::get('/posts/{post}/edit', [PostController::class, 'update'])->name("posts.update");
-// Route::get('/posts/create', [PostController::class, 'create'])->name("photos.create");
-// Route::view("/test", "layouts.BaseLayout");

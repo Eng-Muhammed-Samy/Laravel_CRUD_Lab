@@ -9,11 +9,12 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
-        'user_id',
         'title',
-        'desc',
-        'image'
+        'description',
+        'image',
+        'user_id'
     ];
     protected $hidden = [
         'created_at',
@@ -22,5 +23,12 @@ class Post extends Model
     protected $dates = [
         'deleted_at'
     ];
-
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+function user(){
+    return $this::belongsTo(User::class);
+}
 }

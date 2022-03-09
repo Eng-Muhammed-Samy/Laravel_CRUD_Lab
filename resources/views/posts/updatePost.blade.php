@@ -1,4 +1,4 @@
-@extends("layouts.BaseLayout")
+@extends("../layouts.app")
 @section("content")
 <div class="container my-5">
     <form class="form-control" method="POST" action="{{route('posts.update', $post['id'])}}" >
@@ -10,18 +10,20 @@
         </div>
         <div class="mb-3">
             <label  class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" value ="{{$post['title']}}">
+            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value ="{{$post['title']}}">
+            @error('title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label  class="form-label">Description</label>
-            <input type="text"  name="description" class="form-control" value ="{{$post['desc']}}" >
+            <input type="text"  name="description" class="form-control @error('description') is-invalid @enderror" value ="{{$post['description']}}" >
+            @error('description')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
-            <label  class="form-label">Image</label>
-            <input type="file"  name="image" class="form-control" value ="{{$post['image']}}" >
-        </div>
-        <div class="mb-3">
-            <select class="form-select" name="user_id">
+            <select class="form-select" name="user_id" disabled>
                 @foreach ($users as $user)
                     <option value="{{ $user['id']}}" @if($user['id'] == $post["user_id"]) selected @endif>
                         {{ $user['name'] }}

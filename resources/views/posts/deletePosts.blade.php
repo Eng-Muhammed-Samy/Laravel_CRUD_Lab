@@ -1,4 +1,4 @@
-@extends('layouts/BaseLayout')
+@extends('../layouts/app')
 @section("content")
     <!-- Add new user button -->
     <div class="text-center my-5">

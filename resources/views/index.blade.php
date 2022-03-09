@@ -1,16 +1,16 @@
-@extends('layouts/BaseLayout')
-@section("content")
+@extends('layouts.app')
+
+@section('content')
 <!-- Add new user button -->
-    <div class="text-center my-5">
-            <a href="{{route('posts.create')}}" class="btn btn-success">Add New Post</a>
+    <div class="container text-center">
+            <a href="{{route('posts.create')}}" class="btn btn-outline-success">Add New Post</a>
             <div class="text-center">
-                <hr>
             </div>
             <!-- add table -->
-    <div class="my-5">
+    <div class="my-3">
     <table class="table">
             <thead>
-                <tr>
+                <tr class="bg-dark text-light">
                     <th>ID</th>
                     <th>User_ID</th>
                     <th>Title</th>
@@ -25,9 +25,9 @@
                 @foreach($posts as $post)
                     <tr>
                         <td>{{$post["id"]}}</td>
-                        <td>{{$post["user_id"]}}</td>
+                        <td>{{$post->user->name}}</td>
                         <td>{{$post["title"]}}</td>
-                        <td>{{$post["desc"]}}</td>
+                        <td>{{$post["description"]}}</td>
                         <td><img width="50px" height="50px" src="{{asset('storage/images/'.$post['image'])}}" alt={{$post["image"]}} srcset=""></td>
                         <td><a href="{{route('posts.show',$post['id'])}}" class="btn btn-sm btn-info">view</a></td>
                         <td><a href="{{route('posts.edit', $post['id'])}}" class="btn btn-sm btn-warning">update</a></td>

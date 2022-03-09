@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->String('image');
+            $table->String('image')->default('1646825342PJB-LOGO500x500.png');
         });
     }
 

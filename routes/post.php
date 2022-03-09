@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Posts\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +15,10 @@ use App\Http\Controllers\HomeController;
 */
 
 
-Route::get("/", function (){
-    return view("welcome");
-});
-Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('posts/deletedUsers', [PostController::class, 'getDeletedUsers'])->name('posts.deletedUsers');
+Route::get('posts/myposts', [PostController::class , "getMyPosts"])->name('myposts');
+Route::get('posts/restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
+
+
+Route::resource("posts", PostController::class);
+

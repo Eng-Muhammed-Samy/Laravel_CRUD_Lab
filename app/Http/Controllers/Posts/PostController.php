@@ -75,8 +75,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $users = User::all();
-        return view('posts.updatePost', ["post"=>$post, "users"=>$users]);
+        if($this->authorize('edit', $post)) {
+            $users = User::all();
+            return view('posts.updatePost', ["post" => $post, "users" => $users]);
+        }
     }
 
     /**
@@ -88,8 +90,10 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post->update($request->all());
-        return to_route('posts.index');
+        if($this->authorize('update', $post)) {
+            $post->update($request->all());
+            return to_route('posts.index');
+        }
     }
 
     /**
@@ -100,8 +104,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
-        return to_route('posts.index');
+        if($this->authorize('delete', $post)) {
+            $post->delete();
+            return to_route('posts.index');
+        }
     }
 
     function getDeletedUsers(){

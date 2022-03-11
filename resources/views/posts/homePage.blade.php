@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row">
             @foreach($posts as $post)
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-sm-12 col-md-6 col-lg-4 my-3">
+                    <div class="card" style="">
                             <img class="card-img-top"  src="{{asset('storage/images/'.$post['image'])}}"/>
                         <div class="card-body">
                             <h5 class="card-title">

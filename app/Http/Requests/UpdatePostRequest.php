@@ -26,7 +26,6 @@ class UpdatePostRequest extends FormRequest
         return [
             'title'=>'required | min:6',
             'description'=>'required',
-            'image'=>'required | mimes:jpg,JPG,png,PNG,jpeg,JPEJ'
         ];
     }
     public function messages()
@@ -35,8 +34,6 @@ class UpdatePostRequest extends FormRequest
             'title.required'=>"Please Add Title for the Post",
             'title.min'=>"The length of title should be greater than 6 char",
             'description.required'=> "Add description for the post",
-            'image.required'=> "image required",
-            'image.mimes'=>"The image Should by one of the Image Type [jpg, png, jpeg]"
         ];
     }
 }
